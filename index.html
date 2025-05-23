@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">🌙</button>
+    <script>
+    // Animate background color using HSL for a peaceful warm RGB gradient
+    let hue = 20; // Start at a warm-peaceful hue (peach/orange)
+    function animateBackground() {
+        // Warm, peaceful hues: 15-35 (peach, soft orange, light gold)
+        hue += 0.08;
+        if (hue > 35) hue = 15;
+        document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 80%, 92%) 0%, hsl(${(hue+20)%360}, 90%, 85%) 100%)`;
+        requestAnimationFrame(animateBackground);
+    }
+    animateBackground();
+
+    // Theme toggle logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    function setTheme(dark) {
+        document.body.classList.toggle('dark-mode', dark);
+        themeToggle.textContent = dark ? '☀️' : '🌙';
+    }
+    // Initial theme
+    let dark = prefersDark;
+    setTheme(dark);
+    themeToggle.onclick = () => {
+        dark = !dark;
+        setTheme(dark);
+    };
+    </script>
+    <main class="container">
+        <header class="profile-header">
+            <img src="assets/my image.jpg" alt="Profile Photo" class="profile-photo">
+            <h1 class="name">Yash Gawad</h1>
+            <p class="subtitle">My projects from day 1 - 5</p>
+        </header>
+        <section class="contact-section">
+            <h2 class="section-title">Contact Details</h2>
+            <ul class="contact-list">
+                <li><strong>Email:</strong> 223yash2014@sjcem.edu.in</li>
+                <li><strong>Phone:</strong> 9322268479</li>
+                <li class="website-link"><strong>Home Page:</strong> <a href="https://yashgawad.github.io/Yash_Portfolio/" target="_blank">https://yashgawad.github.io/Yash_Portfolio/</a></li>
+            </ul>
+        </section>
+        <section class="navigation-section">
+            <h2 class="section-title">Explore My Work</h2>
+            <div class="btn-group">
+                <a class="btn" href="https://yashgawad.github.io/Yash_Portfolio/">Day 1 - 3</a>
+                <a class="btn" href="https://yashgawad.github.io/Gawad_Electronics/">Day 4 - 5</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
